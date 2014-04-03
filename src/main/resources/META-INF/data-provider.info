@@ -1,0 +1,5 @@
+file: br.atech.workshop.bestpractices.data.LegacyDataProvider
+http: br.atech.workshop.bestpractices.data.LegacyDataProvider
+https: br.atech.workshop.bestpractices.data.LegacyDataProvider
+ftp: br.atech.workshop.bestpractices.data.LegacyDataProvider
+ftps: br.atech.workshop.bestpractices.data.LegacyDataProvider

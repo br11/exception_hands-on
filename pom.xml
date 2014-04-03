@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>workshop</groupId>
+	<artifactId>exception_hands-on</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>exception_hands-on</name>
+	<packaging>jar</packaging>
+
+	<issueManagement>
+		<system>JIRA</system>
+		<url>https://jira.atech.com.br</url>
+	</issueManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changes-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<issueManagementSystems>
+						<issueManagementSystem>JIRA</issueManagementSystem>
+					</issueManagementSystems>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<reporting>
+		<plugins>
+
+			<plugin>
+				<!-- FindBugs uses static analysis to inspect Java bytecode for occurrences 
+					of bug patterns http://mojo.codehaus.org/findbugs-maven-plugin/usage.html -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.5.4-SNAPSHOT</version>
+				<configuration>
+					<threshold>Normal</threshold>
+					<effort>Min</effort>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<!-- PMD code analysis tool + Copy/Paste Detector tool http://maven.apache.org/plugins/maven-pmd-plugin/ -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<!--targetjdk>1.7.0</targetjdk -->
+					<format>xml</format>
+					<linkXref>true</linkXref>
+					<!--sourceEncoding>utf-8</sourceEncoding -->
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<!-- The Checkstyle Plugin generates a report regarding the code style 
+					used by the developers. http://maven.apache.org/plugins/maven-checkstyle-plugin/index.html -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.11</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+			<plugin>
+				<!-- A Java package dependency analyzer that generates design quality 
+					metrics http://clarkware.com/software/JDepend.html http://mojo.codehaus.org/jdepend-maven-plugin/ -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<!-- JXR is a source cross referencing tool http://maven.apache.org/plugins/maven-jxr-plugin/howto.html -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jxr-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-changes-plugin</artifactId> 
+				<version>2.9</version> <reportSets> <reportSet> <reports> <report>changes-report</report> 
+				</reports> </reportSet> <reportSet> <reports> <report>jira-report</report> 
+				</reports> </reportSet> </reportSets> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+
+		</plugins>
+	</reporting>
+
+</project>
