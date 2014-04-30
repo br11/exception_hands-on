@@ -1,0 +1,317 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Exception hands-on by br11</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Exception hands-on</h1>
+        <p class="header">Hands-on</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/br11/exception_hands-on/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/br11/exception_hands-on/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/br11/exception_hands-on">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/br11">br11</a></p>
+
+
+      </header>
+      <section>
+        <p>Neste hand-on você partirá de uma aplicação pronta e irá, gradativamente, acrescentar  melhorias ao tratamento de exceções. Ao término você perceberá como cada melhoria contribuiu para que a aplicação se tornasse mais confiável.</p>
+
+<p>Siga atentamente as instruções contidas nas três seções a seguir antes de iniciar a execução dos exercícios.</p>
+
+<p>Este documento também está disponível em <a href="https://docs.google.com/document/d/1IepxBa9vvOJwlnM5aoDLDMAF6H7GnCIwjKFk-1dvCKU/pub">https://docs.google.com/...</a></p>
+
+<h3>
+<a name="requisitos" class="anchor" href="#requisitos"><span class="octicon octicon-link"></span></a>Requisitos</h3>
+
+<ul>
+<li>Git</li>
+<li>JDK 1.7.x</li>
+<li>Maven 3.x</li>
+<li>Eclipse Standard IDE</li>
+</ul><h3>
+<a name="prepara%C3%A7%C3%A3o" class="anchor" href="#prepara%C3%A7%C3%A3o"><span class="octicon octicon-link"></span></a>Preparação</h3>
+
+<p>Executar os seguintes passos para baixar os fontes e gerar o projeto do Eclipse.</p>
+
+<pre><code>&gt; mkdir hands-on
+&gt; cd hands-on
+&gt; git clone https://github.com/br11/exception_hands-on.git
+&gt; cd exception_hands-on
+&gt; mvn eclipse:clean eclipse:eclipse
+</code></pre>
+
+<p>Veja o <a href="http://youtu.be/CQmD64M-ZJQ">vídeo</a></p>
+
+<p>Após executar os comandos acima, importe o projeto no eclipse.
+Caso não queira usar Maven e Git você podera fazer o download e descompactar o arquivo .zip, criar um projeto no eclipse apontando para a pasta descompactada. No Eclipse, crie uma source folder apontando para <em>src/main/java</em>.</p>
+
+<h3>
+<a name="execu%C3%A7%C3%A3o" class="anchor" href="#execu%C3%A7%C3%A3o"><span class="octicon octicon-link"></span></a>Execução</h3>
+
+<p>Execute a classe br.atech.workshop.bestpractices.app.Boot contida no projeto.</p>
+
+<p>Preencha o campo nome com o texto “maria” (sem aspas). </p>
+
+<p>A cada clique no botão Check 3 a aplicação irá retornar um resultado diferente. São 4 (quatro) possibilidades de resultado.
+*Erro de leitura;
+*Sucesso;
+*Falha interna;
+*Erro de conexão.</p>
+
+<p><img src="https://lh5.googleusercontent.com/DtSzqsxl3C9DFGdjGQCZhl8EgpWesEQLuZC0-Z7DQC-TpkNWlDQmF6QJTiJGtGbyIfNTmfeG0Pry1LJN1x6qudMqKRn3L-T4Wziw6hKpG4jMlX2vSEYW-PzdQyylDl46aQ" alt=""><img src="https://lh3.googleusercontent.com/_VUNr0wEH0iUFvdPqBJSwCsy-h0Ia_1P8boyKE0iNpxYNub7CprgCOgkrUrzTREc28RsCX1v_M7FS96ZLpXGpCcsNZg4PdiZYp3PM4DyOKZp83DauEdcMcRAFMeuDiIhSA" alt=""><img src="https://lh6.googleusercontent.com/zbe_Sclt1GuS7hwcMa-zmNL1_0IOZeYugZJ9eUfGhoyfYfTRXfijSTgqcH-T5O9sUipFVp2H8iawzb9y3ljJSnTSC9ZcrkxB_oVLz5nOyinKzZZTKfW5HB_ReVTPOzDITg" alt=""><img src="https://lh3.googleusercontent.com/MFKZIZIglbM-QhyDFLFmN3wae-a8EQ-gR6JvH7_ZkzzIyIqryT6MYTrrk6uI4Wx0c3JZpyqni5XQDZC7k0MmlR3aGh2Nbsmhq7XjnlUtfvfprUtx9ZlN3zQraFzlKGko3w" alt=""></p>
+
+<p>Após 4 cliques consecutivos no botão Check 3 os resultados se repetirão.</p>
+
+<h3>
+<a name="exerc%C3%ADcios" class="anchor" href="#exerc%C3%ADcios"><span class="octicon octicon-link"></span></a>Exercícios</h3>
+
+<p>É necessários que os exercício seja executados em sequência. Durante a codificação, aproveite para explorar o código fonte e analisar as alterações que estão sendo propostas. Sempre execute a aplicação após concluir cada exercício - siga as instruções descritas na sessão Execução.</p>
+
+<p><strong>Exercício 1</strong></p>
+
+<p>Implementar um componente de tratamento de exceção.</p>
+
+<pre><code>ExceptionHandler.java
+
+public class ExceptionHandler {
+
+    public Gui gui;
+
+    public ExceptionHandler(Gui gui) {
+        this.gui = gui;
+    }
+
+    public void handle(Throwable t) {
+        // Log
+        t.printStackTrace();
+        // user friendly message
+        gui.error(translate(t));
+    }    
+
+    private String translate(Throwable t) {
+        return "Falha de operação.";
+    }
+}
+</code></pre>
+
+<p><strong>Exercício 2</strong></p>
+
+<p>Implementar um componente  ActionListener padrão.</p>
+
+<pre><code>BaseAction.java
+
+public abstract class BaseAction implements ActionListener {
+
+    private ExceptionHandler exHandler;
+    private Gui gui;
+
+    BaseAction(Gui gui) {
+        this.gui = gui;
+        this.exHandler = new ExceptionHandler(gui);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        gui.reset();
+        try {
+            doAction(event);
+        } catch (Exception e) {
+            exHandler.handle(e);
+        }
+    }
+
+    public abstract void doAction(ActionEvent event) throws Exception;
+}
+</code></pre>
+
+<p><strong>Exercício 3</strong></p>
+
+<p>Aplicar o componente de tratamento de exceção à tela.</p>
+
+<pre><code>Gui.java  
+
+private void addListeners() {
+
+    btn1.addActionListener(new BaseAction(this) {
+        @Override
+        public void doAction(ActionEvent event) throws Exception {
+            resultfield.setText(app.feature1(namefield.getText()));
+        }
+    });
+
+    btn2.addActionListener(new BaseAction(this) {
+        @Override
+        public void doAction(ActionEvent event) throws Exception {
+            resultfield.setText(app.feature2(namefield.getText()));
+        }
+    });
+
+    btn3.addActionListener(new BaseAction(this) {
+        @Override
+        public void doAction(ActionEvent event) throws Exception {
+            resultfield.setText(app.feature3(namefield.getText()));
+        }
+    });
+}
+</code></pre>
+
+<p><strong>Exercício 4</strong></p>
+
+<p>Melhor a mensagem exibida ao usuário. Fornecer mais informações ao usuário a respeito da “falha”.</p>
+
+<pre><code>ExceptionHandler.java
+
+private String translate(Throwable t) {
+    if (t instanceof AppException) {
+        return "Não foi possível processar sua requisição.";
+    } else if (t instanceof RuntimeException) {
+        return "Falha interna. Notifique o administrador do sistema.";
+    } else {
+        return "Falha de operação.";
+    }
+}
+</code></pre>
+
+<p><strong>Exercício 5</strong></p>
+
+<p>Aplicando uma convensão para lançamento checked exceptions a partir de métodos que não declaram exceptions.</p>
+
+<pre><code>LegacyDataIterator.java
+
+@Override
+public boolean hasNext() {
+    try {
+        return !pointer.eof();
+    } catch (IOException e) {
+        throw new RuntimeException("Erro de conexão/leitura.", e);
+    }
+}
+
+@Override
+public Integer next() {
+    try {
+        return pointer.getValue();
+    } catch (IOException e) {
+        throw new RuntimeException("Erro de conexão/leitura.", e);
+    }
+}
+</code></pre>
+
+<p><strong>Exercício 6</strong></p>
+
+<p>Implementando a convensão no handler.</p>
+
+<pre><code>ExceptionHandler.java
+
+private String translate(Throwable t) {
+    Throwable err = t;
+    while (err.getCause() != null
+            &amp;&amp; err.getClass().equals(RuntimeException.class)) {
+        err = err.getCause();
+    }
+
+    if (err instanceof AppException) {
+        return "Não foi possível processar sua requisição.";
+    } else if (err instanceof RuntimeException) {
+        return "Falha interna. Notifique o administrador do sistema.";
+    } else {
+        return "Falha de operação.";
+    }
+}
+</code></pre>
+
+<p><strong>Exercício 7</strong></p>
+
+<p>Criando subsídios para o posterior diagnóstico da “falha”.</p>
+
+<pre><code>App.java
+
+private String requestInformation(DataProvider&lt;Integer&gt; provider,
+        String query) throws AppException {
+    try {
+        provider.connect();
+
+        StringBuilder sb = new StringBuilder();
+        Iterator&lt;Integer&gt; data = provider.getData(query);
+        while (data.hasNext()) {
+            Integer part = data.next();
+            if (part != null) {
+                sb.append(part);
+            }
+            sb.append("; ");
+        }
+
+        return sb.toString();
+    } catch (DataException e) {
+        throw new InfoRequestException(provider, e);
+
+    } catch (RuntimeException e) {
+        if (e.getClass().equals(RuntimeException.class) 
+            &amp;&amp; !(e.getCause() instanceof RuntimeException)) {
+            throw new InfoRequestException(provider, e.getCause());
+        } else {
+            throw e;
+        }
+
+    } finally {
+        provider.releaseConnection();
+    }
+}
+</code></pre>
+
+<p><strong>Exercício 8</strong></p>
+
+<p>Aprimorando a mensagem exibida ao usuário.</p>
+
+<pre><code>ExceptionHandler.java
+
+private String translate(Throwable t) {
+    Throwable err = t;
+    while (err.getCause() != null
+            &amp;&amp; err.getClass().equals(RuntimeException.class)) {
+        err = err.getCause();
+    }
+
+    if (err instanceof InfoRequestException) {
+        if (err.getCause() != null
+                &amp;&amp; err.getCause().getMessage().contains("1404")) {
+            return "Erro de leitura: "
+                    + ((InfoRequestException) err).getProvider();
+        } else {
+            return "Erro de conexão: "
+                    + ((InfoRequestException) err).getProvider();
+        }
+    } else if (err instanceof AppException) {
+        return "Não foi possível processar sua requisição.";
+    } else if (err instanceof RuntimeException) {
+        return "Falha interna. Notifique o administrador do sistema.";
+    } else {
+        return "Falha de operação.";
+    }
+}
+</code></pre>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
